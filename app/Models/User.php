@@ -40,20 +40,12 @@ class User extends Authenticatable implements FilamentUser
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'birthdate' => 'date',
-            'password' => 'hashed',
-            'is_admin' => 'boolean',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'birthdate' => 'date',
+        'password' => 'hashed',
+        'is_admin' => 'boolean',
+    ];
 
     public function canAccessPanel(Panel $panel): bool
     {
