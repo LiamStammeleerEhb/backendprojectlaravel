@@ -3,6 +3,7 @@
 use App\Models\NewsArticle;
 use App\Models\FAQCategory;
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +36,9 @@ Route::get('/faq', function () {
 
     return view('faq.index', compact('categories'));
 })->name('faq');
+
+
+Route::get('/contact', [ContactController::class, 'create'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store']);
 
 require __DIR__.'/auth.php';
