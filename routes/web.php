@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\NewsArticle;
+use App\Models\FAQCategory;
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +29,11 @@ Route::get('/news', function () {
 Route::get('/news/{article}', function (NewsArticle $article) {
     return view('news.show', compact('article'));
 });
+
+Route::get('/faq', function () {
+    $categories = FAQCategory::with('faqs')->get();
+
+    return view('faq.index', compact('categories'));
+})->name('faq');
 
 require __DIR__.'/auth.php';

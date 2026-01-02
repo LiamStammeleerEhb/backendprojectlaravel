@@ -8,6 +8,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Carbon;
+use Filament\Forms\Components\RichEditor;
 
 class NewsArticleForm
 {
@@ -22,7 +23,7 @@ class NewsArticleForm
                     ->directory('news')
                     ->imagePreviewHeight(200)
                     ->disk('public'),
-                Textarea::make('content')
+                RichEditor::make('content')
                     ->required()
                     ->columnSpanFull(),
                 DatePicker::make('publication_date')
