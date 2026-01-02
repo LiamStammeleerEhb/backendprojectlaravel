@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
@@ -46,6 +46,54 @@
                 </div>
             @endif
         </div>
+
+        <div>
+            <x-input-label for="profile_picture" value="Profile picture" />
+
+            @if($user->profile_picture)
+                <img
+                    src="{{ asset('storage/' . $user->profile_picture) }}"
+                    class="w-24 h-24 rounded-full mb-2"
+                >
+            @endif
+
+            <input
+                type="file"
+                name="profile_picture"
+                id="profile_picture"
+                class="mt-1 block w-full"
+            />
+
+            <x-input-error class="mt-2" :messages="$errors->get('profile_picture')" />
+        </div>
+
+        <div>
+            <x-input-label for="birthdate" value="Birthdate" />
+
+            <x-text-input
+                id="birthdate"
+                name="birthdate"
+                type="date"
+                class="mt-1 block w-full"
+                value="{{ old('birthdate', $user->birthdate?->format('Y-m-d')) }}"
+            />
+
+            <x-input-error class="mt-2" :messages="$errors->get('birthdate')" />
+        </div>
+
+        <div>
+            <x-input-label for="about_me" value="About me" />
+
+            <textarea
+                name="about_me"
+                rows="4"
+                class="mt-1 block w-full border-gray-300 rounded-md"
+            >{{ old('about_me', $user->about_me) }}</textarea>
+
+            <x-input-error class="mt-2" :messages="$errors->get('about_me')" />
+        </div>
+
+        
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>

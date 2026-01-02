@@ -10,5 +10,10 @@ class ContactMessage extends Model
     protected $fillable = [
         'email',
         'message',
+        'handled',
+    ];
+    
+    protected $casts = [
+        'handled' => 'boolean',
     ];
 }

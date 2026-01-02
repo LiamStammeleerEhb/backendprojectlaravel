@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\IconColumn;
 
 class ContactMessagesTable
 {
@@ -24,6 +25,9 @@ class ContactMessagesTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: false),
+                IconColumn::make('handled')
+                    ->boolean()
+                    ->label('Handled'),
             ])
             ->filters([
                 //
