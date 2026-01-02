@@ -18,7 +18,10 @@ class NewsArticleForm
                 TextInput::make('title')
                     ->required(),
                 FileUpload::make('image')
-                    ->image(),
+                    ->image()
+                    ->directory('news')
+                    ->imagePreviewHeight(200)
+                    ->disk('public'),
                 Textarea::make('content')
                     ->required()
                     ->columnSpanFull(),
