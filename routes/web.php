@@ -3,6 +3,7 @@
 use App\Models\NewsArticle;
 use App\Models\FAQCategory;
 
+use App\Http\Controllers\UserLookupController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -40,5 +41,9 @@ Route::get('/faq', function () {
 
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store']);
+
+
+Route::get('/users/search', [UserLookupController::class, 'index'])->name('users.search');
+Route::get('/users/{user}', [UserLookupController::class, 'show'])->name('users.show');
 
 require __DIR__.'/auth.php';
