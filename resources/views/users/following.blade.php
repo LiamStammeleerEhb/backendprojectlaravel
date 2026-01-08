@@ -14,7 +14,7 @@
                     @endif
 
                     @foreach($following as $user)
-                        <div class="flex items-center gap-4 p-3 rounded">
+                        <div class="flex items-center gap-4 p-3 rounded pb-1">
                             @if($user->profile_picture)
                                 <img
                                     src="{{ asset('storage/' . $user->profile_picture) }}"
