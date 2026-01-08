@@ -19,6 +19,29 @@
                         @if($user->birthdate)
                             <p><strong>Birthdate:</strong> {{ $user->birthdate->format('d-m-Y') }}</p>
                         @endif
+
+                        @auth
+                            @if(auth()->id() !== $user->id)
+                                @if(auth()->user()->isFollowing($user))
+                                    <form method="POST" action="{{ route('users.unfollow', $user) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="bg-red-600 text-white px-4 py-2 rounded">
+                                            Unfollow
+                                        </button>
+                                    </form>
+                                @else
+                                    <form method="POST" action="{{ route('users.follow', $user) }}">
+                                        @csrf
+                                        <button class="px-4 py-2 rounded" style='background-color: #4299E1; '>
+                                            Follow
+                                        </button>
+                                    </form>
+                                @endif
+                            @endif
+                        @endauth
+                        <p>{{ $user->followers()->count() }} followers</p>
+                        <p>{{ $user->following()->count() }} following</p>
                         @if($user->about_me)
                             <p><strong>About me:</strong> {{ $user->about_me }}</p>
                         @endif

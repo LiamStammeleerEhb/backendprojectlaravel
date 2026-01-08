@@ -6,6 +6,8 @@ use App\Models\FAQCategory;
 use App\Http\Controllers\UserLookupController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FollowController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,6 +39,11 @@ Route::get('/faq', function () {
 
     return view('faq.index', compact('categories'));
 })->name('faq');
+
+Route::middleware('auth')->group(function () {
+    Route::post('/users/{user}/follow', [FollowController::class, 'follow'])->name('users.follow');
+    Route::delete('/users/{user}/unfollow', [FollowController::class, 'unfollow'])->name('users.unfollow');
+});
 
 
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
