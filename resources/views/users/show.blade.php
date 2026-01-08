@@ -10,10 +10,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @if($user->profile_picture)
-                        <img src="{{ asset('storage/' . $user->profile_picture) }}" class="w-32 h-32 rounded-full mx-auto">
+                        <img src="{{ asset('storage/' . $user->profile_picture) }}" class="w-32 h-32 rounded-full mx-auto" hei>
                     @endif
 
-                    <div>
+                    <div class="mx-auto">
                         <p><strong>Username:</strong> {{ $user->name }}</p>
                         <p><strong>Email:</strong> {{ $user->email }}</p>
                         

@@ -18,7 +18,7 @@
                             @if($user->profile_picture)
                                 <img
                                     src="{{ asset('storage/' . $user->profile_picture) }}"
-                                    class="w-12 h-12 rounded-full"
+                                    class="rounded-full" style="width:32px; height:32px;"
                                 >
                             @endif
 
