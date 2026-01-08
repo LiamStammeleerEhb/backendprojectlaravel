@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class FollowController extends Controller
 {
@@ -20,5 +21,14 @@ class FollowController extends Controller
         auth()->user()->following()->detach($user->id);
 
         return back();
+    }
+
+    public function index(): View
+    {
+        $user = auth()->user();
+
+        $following = $user->following()->get();
+
+        return view('users.following', compact('following'));
     }
 }

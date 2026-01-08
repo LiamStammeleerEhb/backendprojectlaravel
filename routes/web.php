@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/users/{user}/unfollow', [FollowController::class, 'unfollow'])->name('users.unfollow');
 });
 
+Route::middleware('auth')->get('/following', [FollowController::class, 'index'])
+    ->name('users.following');
 
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store']);

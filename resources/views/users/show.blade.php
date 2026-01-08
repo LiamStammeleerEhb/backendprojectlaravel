@@ -16,10 +16,11 @@
                     <div>
                         <p><strong>Username:</strong> {{ $user->name }}</p>
                         <p><strong>Email:</strong> {{ $user->email }}</p>
+                        
                         @if($user->birthdate)
                             <p><strong>Birthdate:</strong> {{ $user->birthdate->format('d-m-Y') }}</p>
                         @endif
-
+                        <p>{{ $user->followers()->count() }} followers | {{ $user->following()->count() }} following</p>
                         @auth
                             @if(auth()->id() !== $user->id)
                                 @if(auth()->user()->isFollowing($user))
@@ -40,8 +41,6 @@
                                 @endif
                             @endif
                         @endauth
-                        <p>{{ $user->followers()->count() }} followers</p>
-                        <p>{{ $user->following()->count() }} following</p>
                         @if($user->about_me)
                             <p><strong>About me:</strong> {{ $user->about_me }}</p>
                         @endif

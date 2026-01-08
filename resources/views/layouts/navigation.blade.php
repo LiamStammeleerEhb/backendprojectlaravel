@@ -30,6 +30,14 @@
                     </x-nav-link>
                 </div>
 
+                @auth
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('users.following')">
+                            Following
+                        </x-nav-link>
+                    </div>
+                @endauth
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('faq')" :active="request()->routeIs('faq')">
                         {{ __('FAQ') }}
